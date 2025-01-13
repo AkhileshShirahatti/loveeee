@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #333;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            animation: backgroundAnimation 10s ease-in-out infinite;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            }
+            50% {
+                background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);
+            }
+            100% {
+                background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            }
+        }
+
+        .container {
+            display: none;
+            position: absolute;
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .container h1 {
+            font-size: 2.5rem;
+            margin: 0 0 20px;
+            color: #ff6f61;
+            animation: fadeInText 2s ease-in-out;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            margin: 10px;
+            color: #fff;
+            background: linear-gradient(45deg, #ff6f61, #ff856e);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: bounceIn 1s ease-out;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #ff856e, #ff9a9e);
+            transform: scale(1.1);
+            animation: buttonClick 0.3s ease-out;
+        }
+
+        img {
+            display: none;
+            margin-top: 20px;
+            width: 250px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 1s ease-out;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hearts, .balloons, .confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: red;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: floatHearts 5s ease-in-out infinite;
+        }
+
+        .balloon {
+    position: absolute;
+    bottom: -50px;
+    width: 30px;
+    height: 40px;
+    background: linear-gradient(45deg, #ff6f61, #ffc3a0);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: floatUp 5s linear forwards;
+  
+}
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff6f61;
+            border-radius: 50%;
+            animation: confettiAnimation 2s linear infinite;
+        }
+        /* Cake image */
+/* Cake image without background box */
+#cakeImage {
+    display:none;
+    width: 525px;
+    height: 600px;
+    border-radius: 15px;
+    margin-top: 20px;
+    animation: cakeZoomIn 1s ease-out;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    position: absolute; /* Position it in the center */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Cake image zoom-in animation */
+@keyframes cakeZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5) translate(-50%, -50%);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+/* Style for text and button fade out */
+#messagePage h1,
+#messagePage button {
+    animation: fadeOutText 1s ease-out;
+}
+
+@keyframes fadeOutText {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Style for text and button fade out */
+#messagePage h1,
+#messagePage button {
+    animation: fadeOutText 1s ease-out;
+}
+
+@keyframes fadeOutText {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150vh) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes buttonClick {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes floatHearts {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        @keyframes confettiAnimation {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Video container */
+        #cakeVideo {
+            display: none;
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="page1">
+        <h1>Yeyeyey! It's your Special Day!! ❤️❤️❤️</h1>
+    </div>
+    <div class="container" id="page2">
+        <h1>There is a surprise waiting for you 🎁🎉</h1>
+    </div>
+    <div class="container" id="page3">
+        <h1>Do you wanna see what I made? 😊</h1>
+        <button onclick="showPage('noPage')">No</button>
+        <button onclick="showPage('yesPage')">Yes</button>
+    </div>
+    <div class="container" id="noPage">
+        <h1>Really? 😢</h1>
+    </div>
+    <div class="container" id="yesPage">
+        <h1>Have a look at it, Madam jii! 🎈</h1>
+        <button onclick="showPage('musicPage')">Next</button>
+    </div>
+    <div class="container" id="musicPage">
+        <button onclick="playMusic()">Play Music</button>
+    </div>
+    <div class="container" id="decoratePage">
+        <button onclick="showImage()">Decorate</button>
+        <img src="Tag.png" id="birthdayImage">
+    </div>
+    <div class="container" id="cakePage">
+        <button onclick="showPage('messagePage')">I Have a Message for You Madam jii</button>
+    </div>
+    <div class="container" id="messagePage">
+        <h1>You mean a lot to me, and I will always love you ❤️</h1>
+        <button onclick ="showCake()">Let’s Cut the Cake 🎂</button>
+
+        <img src="Cake.jpg"id=cakeImage>
+    </div>
+
+    <!-- Cake Image (instead of video) -->
+    <img id="cakeImage" src="C:/Users/Vinay/OneDrive/Desktop/Loveee/Cake.jpg" alt="Cake Image">
+
+    <div class="hearts" id="heartsContainer"></div>
+    <div class="balloons" id="balloonsContainer"></div>
+    <div class="confetti" id="confettiContainer"></div>
+
+    <script>
+        const pages = ['page1', 'page2', 'page3', 'noPage', 'yesPage', 'musicPage', 'decoratePage', 'balloonsPage', 'cakePage', 'messagePage'];
+
+        function showPage(pageId) {
+            pages.forEach(id => {
+                const page = document.getElementById(id);
+                if (page) page.style.display = 'none';
+            });
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) targetPage.style.display = 'block';
+        }
+
+        function playMusic() {
+            const audio = new Audio("happy-birthday-258264.mp3");
+            audio.play();
+            showPage('decoratePage');
+
+    setTimeout(() => {
+        showPage('cakePage');
+    }, 5000);
+}
+
+        function showCake() {
+    const cakeImage = document.getElementById('cakeImage');
+    cakeImage.style.display = 'block';
+
+    // Hide button and text in the current page
+    const button = document.querySelector('#messagePage button');
+    const heading = document.querySelector('#messagePage h1');
+    heading.style.display = 'none';
+    button.style.display = 'none';
+      // Hide the container and its content (text and button)
+      messageContainer.style.display = 'none';
+
+// Show the cake image
+cakeImage.style.display = 'block';
+
+
+    // Wait for 4 seconds and then redirect to the first page
+    setTimeout(() => {
+        showPage('page1');
+        cakeImage.style.display = 'none';
+    }, 4000);
+}
+
+        function showImage() {
+            const image = document.getElementById('birthdayImage');
+            const decorateButton = document.querySelector('button[onclick="showImage()"]');
+            decorateButton.style.display = 'none';
+            image.style.display = 'block';
+
+            setTimeout(() => {
+                image.style.display = 'none';
+                decorateButton.style.display = 'block';
+                showPage('messagePage');
+            }, 3000);
+        }
+
+        function startFlow() {
+            if (currentPage < 3) {
+                showPage(pages[currentPage]);
+                currentPage++;
+                setTimeout(startFlow, 5000);
+            }
+        }
+
+        let currentPage = 0;
+        startFlow();
+
+        // Create floating hearts animation
+        function createHearts() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Trigger the heart animation
+        createHearts();
+
+        // Create confetti effect
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confettiContainer');
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-piece';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = Math.random() * 100 + 'vh';
+                confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        createConfetti();
+    </script>
+</body>
+</html>
+<html>
+<div id="balloon-container">
+</div>
+<style>
+body {
+  margin: 0;
+}
+
+#balloon-container {
+  height: 100vh;
+  padding: 1em;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  transition: opacity 500ms;
+}
+
+.balloon {
+  height: 125px;
+  width: 105px;
+  border-radius: 75% 75% 70% 70%;
+  position: relative;
+}
+
+.balloon:before {
+  content: "";
+  height: 75px;
+  width: 1px;
+  padding: 1px;
+  background-color: #FDFD96;
+  display: block;
+  position: absolute;
+  top: 125px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.balloon:after {
+    content: "▲";
+    text-align: center;
+    display: block;
+    position: absolute;
+    color: inherit;
+    top: 120px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+@keyframes float {
+  from {transform: translateY(100vh);
+  opacity: 1;}
+  to {transform: translateY(-300vh);
+  opacity: 0;}
+}
+</style>
+<script>
+const balloonContainer = document.getElementById("balloon-container");
+
+function random(num) {
+  return Math.floor(Math.random() * num);
+}
+
+function getRandomStyles() {
+  var r = random(255);
+  var g = random(255);
+  var b = random(255);
+  var mt = random(200);
+  var ml = random(50);
+  var dur = random(5) + 5;
+  return `
+  background-color: rgba(${r},${g},${b},0.7);
+  color: rgba(${r},${g},${b},0.7); 
+  box-shadow: inset -7px -3px 10px rgba(${r - 10},${g - 10},${b - 10},0.7);
+  margin: ${mt}px 0 0 ${ml}px;
+  animation: float ${dur}s ease-in infinite
+  `;
+}
+
+function createBalloons(num) {
+  for (var i = num; i > 0; i--) {
+    var balloon = document.createElement("div");
+    balloon.className = "balloon";
+    balloon.style.cssText = getRandomStyles();
+    balloonContainer.append(balloon);
+  }
+}
+
+function removeBalloons() {
+  balloonContainer.style.opacity = 0;
+  setTimeout(() => {
+    balloonContainer.remove()
+  }, 500)
+}
+
+window.addEventListener("load", () => {
+  createBalloons(30)
+});
+
+window.addEventListener("click", () => {
+  removeBalloons();
+});
+</script><html>
